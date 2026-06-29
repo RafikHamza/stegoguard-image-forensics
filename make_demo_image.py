@@ -9,7 +9,6 @@ if mode not in ["clean", "suspicious"]:
 
 Path("images").mkdir(exist_ok=True)
 
-
 def png_chunk(chunk_type, data):
     """Create a PNG chunk with length, type, data, and CRC."""
     return (
@@ -18,7 +17,6 @@ def png_chunk(chunk_type, data):
         + data
         + struct.pack(">I", zlib.crc32(chunk_type + data) & 0xFFFFFFFF)
     )
-
 
 def create_demo_png(width=300, height=300):
     """Create a valid RGB PNG image using only Python standard library."""
@@ -46,7 +44,6 @@ def create_demo_png(width=300, height=300):
         + png_chunk(b"IDAT", compressed_pixels)
         + png_chunk(b"IEND", b"")
     )
-
 
 # Larger valid 300x300 PNG image.
 png_data = create_demo_png(width=300, height=300)
